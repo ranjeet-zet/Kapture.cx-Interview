@@ -1,0 +1,65 @@
+package com.example.demo.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.Model.Calls;
+import com.example.demo.Repositery.CallRepo;
+
+@Service
+public class CallsDaoImpl implements CallsDao {
+	
+	private static  String[] daysName = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
+	@Autowired
+	private CallRepo cRepo;
+
+	@Override
+	public String HourOfTheDayWhenCallVolumeIsHights() {
+
+		Integer start_hour = cRepo.findHighestCallVolumeByHour();
+		Integer end_hour = (start_hour + 1) % 24;
+
+		start_hour = (start_hour == 0) ? 12 : (start_hour > 12) ? start_hour - 12 : start_hour;
+		end_hour = (end_hour == 0) ? 12 : (end_hour > 12) ? end_hour - 12 : end_hour;
+
+		String start_ampm = (start_hour < 12) ? " AM " : " PM ";
+		String end_ampm = (end_hour < 12) ? " AM" : " PM";
+
+		return "Hour of the day when the call voulume is highest is " + start_hour + start_ampm + "- " + end_hour
+				+ end_ampm;
+	}
+
+	@Override
+	public String HourOfTheDayWhenCallareLongest() {
+		Integer start_hour = cRepo.findLongestCallsByHour();
+		Integer end_hour = (start_hour + 1) % 24;
+
+		start_hour = (start_hour == 0) ? 12 : (start_hour > 12) ? start_hour - 12 : start_hour;
+		end_hour = (end_hour == 0) ? 12 : (end_hour > 12) ? end_hour - 12 : end_hour;
+
+		String start_ampm = (start_hour < 12) ? " AM " : " PM ";
+		String end_ampm = (end_hour < 12) ? " AM" : " PM";
+
+		return "Hour of the day when the call are longest is " + start_hour + start_ampm + "- " + end_hour + end_ampm;
+
+	}
+
+	@Override
+	public String DayOfTheWeakWhenTheCallVolumeIsHighest() {
+		Integer day = cRepo.findHighestCallVolumeByDay();
+		
+		
+		
+		return "Day of the week when the call volume is highest is " + day +" ("+daysName[day]+")";
+	}
+
+	@Override
+	public String DayOfTheWeakWhenTheCallAreLongest() {
+		Integer day = cRepo.findLongestCallsByDay();
+		return "Day of the week when the calls are longest is " + day;
+	}
+
+}

@@ -1,0 +1,15 @@
+package com.example.demo.Service;
+
+import java.util.List;
+
+import com.example.demo.Model.Calls;
+
+public interface CallsDao {
+
+	
+	String HourOfTheDayWhenCallVolumeIsHights();
+	String HourOfTheDayWhenCallareLongest();
+	String DayOfTheWeakWhenTheCallVolumeIsHighest();
+	String DayOfTheWeakWhenTheCallAreLongest();
+	
+}

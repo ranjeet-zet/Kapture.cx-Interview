@@ -1,0 +1,13 @@
+package com.example.demo.Repositery;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.example.demo.Model.Calls;
+
+public interface CallRepo extends JpaRepository<Calls, Integer> {
+
+	@Query(value =  "SELECT HOUR(Start_time) AS HOUR FROM calls GROUP BY HOUR(start_time) ORDER BY COUNT(calls.id) DESC LIMIT 1;")
+	Integer selectdata();
+	
+}

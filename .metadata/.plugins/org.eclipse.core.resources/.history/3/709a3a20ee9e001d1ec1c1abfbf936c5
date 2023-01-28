@@ -1,0 +1,46 @@
+package com.example.demo.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.Model.Calls;
+import com.example.demo.Repositery.CallRepo;
+
+@Service
+public class CallsDaoImpl implements CallsDao{
+	
+	@Autowired
+	private CallRepo cRepo;
+
+	@Override
+	public String HourOfTheDayWhenCallVolumeIsHights() {
+		// TODO Auto-generated method stub
+		return "Hello";
+	}
+
+	@Override
+	public String HourOfTheDayWhenCallareLongest() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String DayOfTheWeakWhenTheCallVolumeIsHighest() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String DayOfTheWeakWhenTheCallAreLongest() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Calls> getAllcalls(){
+		System.out.println(cRepo.findTopHourByStartTime());
+	return	cRepo.findAll();
+	}
+
+}

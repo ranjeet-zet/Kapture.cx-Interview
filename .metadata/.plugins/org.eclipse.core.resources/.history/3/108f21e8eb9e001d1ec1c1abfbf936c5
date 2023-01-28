@@ -1,0 +1,14 @@
+package com.example.demo.Repositery;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.example.demo.Model.Calls;
+
+public interface CallRepo extends JpaRepository<Calls, Integer> {
+
+	@Query(value = "SELECT HOUR(c.start_time) as hour " + "FROM Calls c " + "GROUP BY HOUR(c.start_time) "
+			+ "ORDER BY COUNT(*) DESC " + "LIMIT 1")
+	Integer findHourWithHighestCallCount();
+
+}

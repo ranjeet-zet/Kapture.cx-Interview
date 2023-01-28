@@ -1,0 +1,59 @@
+package com.example.demo.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.Model.Calls;
+import com.example.demo.Repositery.CallRepo;
+
+@Service
+public class CallsDaoImpl implements CallsDao{
+	
+	@Autowired
+	private CallRepo cRepo;
+
+	@Override
+	public String HourOfTheDayWhenCallVolumeIsHights() {
+		
+		Integer start_hour= cRepo.findHighestCallVolumeByHour();
+		Integer end_hour=(start_hour+1)%24;
+		
+		start_hour=(start_hour==0)?12:(start_hour>12)? start_hour-12:start_hour;
+		end_hour=(end_hour==0)?12:(end_hour>12)? end_hour-12:end_hour;
+		
+		String start_ampm=(start_hour<12)? " AM ":" PM ";
+		String end_ampm=(end_hour<12)? " AM":" PM";
+		
+		return "Hour of the day when the call voulume is highest is "+start_hour+start_ampm+"- "+end_hour+end_ampm;
+	}
+
+	@Override
+	public String HourOfTheDayWhenCallareLongest() {
+		Integer start_hour= cRepo.findLongestCallsByHour();
+		Integer end_hour=(start_hour+1)%24;
+		
+		start_hour=(start_hour==0)?12:(start_hour>12)? start_hour-12:start_hour;
+		end_hour=(end_hour==0)?12:(end_hour>12)? end_hour-12:end_hour;
+		
+		String start_ampm=(start_hour<12)? " AM ":" PM ";
+		String end_ampm=(end_hour<12)? " AM":" PM";
+		
+		return "Hour of the day when the call are longest is "+start_hour+start_ampm+"- "+end_hour+end_ampm;
+	
+	}
+
+	@Override
+	public String DayOfTheWeakWhenTheCallVolumeIsHighest() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String DayOfTheWeakWhenTheCallAreLongest() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

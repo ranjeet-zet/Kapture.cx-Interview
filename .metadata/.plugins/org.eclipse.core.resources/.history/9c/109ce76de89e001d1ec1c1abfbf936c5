@@ -1,0 +1,29 @@
+package com.example.demo.Service;
+
+public class CallsDaoImpl implements CallsDao{
+
+	@Override
+	public String HourOfTheDayWhenCallVolumeIsHights() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String HourOfTheDayWhenCallareLongest() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String DayOfTheWeakWhenTheCallVolumeIsHighest() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String DayOfTheWeakWhenTheCallAreLongest() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
